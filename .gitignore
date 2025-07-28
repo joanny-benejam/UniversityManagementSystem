@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /UniversityManagementSystem.EntityFrameworkCore/Migrations
+/UniversityManagementSystem/Data/UniversityManagementSystem.db
