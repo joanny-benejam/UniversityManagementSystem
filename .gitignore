@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /UniversityManagementSystem.EntityFrameworkCore/Migrations
 /UniversityManagementSystem/Data/UniversityManagementSystem.db
+/UniversityManagementSystem/Data
