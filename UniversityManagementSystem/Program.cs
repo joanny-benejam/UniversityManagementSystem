@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using UniversityManagementSystem.EntityFrameworkCore;
 using UniversityManagementSystem.Utils;
 
@@ -12,7 +13,17 @@ switch (databaseDriver)
     default: { throw new Exception("Database driver not supported"); } break;
 }
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,9 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+app.UseCors("MyCorsPolicy");
 
 app.MapControllers();
 

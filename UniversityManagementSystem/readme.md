@@ -71,3 +71,62 @@ The database provider is determined by the `Database:Provider` key in `appsettin
 - SQL Server (if using SQL Server as the database provider).
 
 ### **2. Clone the Repository**
+```
+    git clone https://github.com/joanny-benejam/UniversityManagementSystem.git
+```
+
+### **3. Install Dependencies**
+Restore NuGet packages:
+```
+    dotnet restore
+```
+
+### **4. Configure the Database**
+Update the `appsettings.json` file with the appropriate database provider and connection string.
+
+### **5. Apply Migrations**
+Run the following commands to create and apply migrations:
+```
+    dotnet ef migrations add Initial -c UniversityManagementSystemSqLiteDbContext 
+    dotnet ef database update -c UniversityManagementSystemSqLiteDbContext
+```
+
+For SQL Server:
+```
+    dotnet ef migrations add Initial -c UniversityManagementSystemSqlDbContext 
+    dotnet ef database update -c UniversityManagementSystemSqlDbContext
+```
+
+### **6. Run the Application**
+Start the application:
+```
+    dotnet run --project UniversityManagementSystem.Web
+```
+
+---
+
+## Usage
+- Access the API documentation at `https://localhost:<7295>/swagger` (in development mode).
+- Use the API endpoints to manage university data.
+
+---
+
+## Entities
+### **Student**
+- `Id` (GUID): Primary key.
+- `Name` (string): Name of the student.
+- `Email` (string): Email address of the student.
+- `DateOfBirth` (DateTime?): Date of birth of the student.
+
+---
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
