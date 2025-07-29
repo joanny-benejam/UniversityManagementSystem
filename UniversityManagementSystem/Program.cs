@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using UniversityManagementSystem.EntityFrameworkCore;
+using UniversityManagementSystem.Interfaces;
+using UniversityManagementSystem.Profiles;
+using UniversityManagementSystem.Repositories;
+using UniversityManagementSystem.Services;
 using UniversityManagementSystem.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +24,9 @@ switch (databaseDriver)
     default: { throw new Exception("Database driver not supported"); } break;
 }
 
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyCorsPolicy", builder =>
@@ -30,7 +37,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

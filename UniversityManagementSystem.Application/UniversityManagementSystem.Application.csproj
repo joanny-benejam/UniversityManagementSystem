@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UniversityManagementSystem.Core\UniversityManagementSystem.Core.csproj" />
+    <ProjectReference Include="..\UniversityManagementSystem.EntityFrameworkCore\UniversityManagementSystem.EntityFrameworkCore.csproj" />
   </ItemGroup>
   
 </Project>

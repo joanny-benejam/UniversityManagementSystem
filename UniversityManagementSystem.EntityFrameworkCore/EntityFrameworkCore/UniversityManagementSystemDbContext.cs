@@ -32,5 +32,9 @@ namespace UniversityManagementSystem.EntityFrameworkCore
                 .WithMany(c => c.Enrollments)
                 .HasForeignKey(e => e.CourseId);
         }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
     }
 }

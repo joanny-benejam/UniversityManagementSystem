@@ -12,8 +12,5 @@ namespace UniversityManagementSystem.EntityFrameworkCore
         {
             options.UseSqlServer(Configuration["Database:SqlServerConnection"]);
         }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
     }
 }
