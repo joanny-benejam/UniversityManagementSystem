@@ -15,22 +15,22 @@ namespace UniversityManagementSystem.Controllers
             _studentService = studentService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentDto>>> GetAll()
+        [HttpGet("withcourses")]
+        public async Task<ActionResult<IEnumerable<StudentWithCoursesDto>>> GetAllWithCourses()
         {
-            var students = await _studentService.GetAllStudentsAsync();
+            var students = await _studentService.GetAllStudentsWithCoursesAsync();
             return Ok(students);
         }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<StudentDto>> GetById(Guid id)
+        
+        [HttpPost]
+        public async Task<ActionResult<StudentDto>> Create([FromBody] CreateStudentDto createStudentDto)
         {
-            var student = await _studentService.GetStudentByIdAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            return Ok(student);
+            var student = await _studentService.CreateStudentAsync(createStudentDto);
+            
+            return CreatedAtAction(
+                nameof(Create),
+                new { id = student.Id },
+                student);
         }
     }
 }
