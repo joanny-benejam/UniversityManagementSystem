@@ -16,13 +16,11 @@ namespace UniversityManagementSystem.Repositories
 
         public async Task<Enrollment> AddAsync(Enrollment enrollment)
         {
-            // Asignar un nuevo ID si no se ha proporcionado uno
             if (enrollment.Id == Guid.Empty)
             {
                 enrollment.Id = Guid.NewGuid();
             }
             
-            // Establecer la fecha de inscripción si no se ha proporcionado
             if (enrollment.EnrollmentDate == default)
             {
                 enrollment.EnrollmentDate = DateTime.UtcNow;

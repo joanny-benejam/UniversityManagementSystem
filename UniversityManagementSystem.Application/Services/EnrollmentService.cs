@@ -18,14 +18,12 @@ namespace UniversityManagementSystem.Services
 
         public async Task<EnrollmentDto> CreateEnrollmentAsync(CreateEnrollmentDto enrollmentDto)
         {
-            // Validar que no exista ya la inscripción
             bool enrollmentExists = await EnrollmentExistsAsync(enrollmentDto.StudentId, enrollmentDto.CourseId);
             if (enrollmentExists)
             {
                 throw new InvalidOperationException("The student is already enrolled in this course");
             }
 
-            // Validar que existan tanto el estudiante como el curso
             var student = await _unitOfWork.Students.GetByIdAsync(enrollmentDto.StudentId);
             if (student == null)
             {
@@ -38,7 +36,6 @@ namespace UniversityManagementSystem.Services
                 throw new ArgumentException("Course not found");
             }
 
-            // Crear la inscripción
             var enrollment = _mapper.Map<Enrollment>(enrollmentDto);
             enrollment.EnrollmentDate = DateTime.UtcNow;
             

@@ -6,8 +6,6 @@
         public Guid StudentId { get; set; }
         public Guid CourseId { get; set; }
         public DateTime EnrollmentDate { get; set; }
-
-       // public StudentDto Student { get; set; }
         public CourseDto Course { get; set; }
     }
 }
